@@ -12,7 +12,7 @@
 #include <WiFiClient.h>
 
 const char ssid = "UNE_HFC_7BB0";
-const char password = "AAA0BF87";
+const char password = "";
 
 void setup() {
   Serial.begin(9600);

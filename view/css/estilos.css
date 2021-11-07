@@ -1,0 +1,38 @@
+.nav1{
+    background-color: cornflowerblue;
+}
+.contenedor{
+    margin-top:3%;
+}
+
+.titulo{
+    color: rgb(0, 113, 193);
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 0%;
+    margin-bottom: 3%;
+    border-color: rgb(2, 1, 102);
+    border-collapse: collapse;
+}
+
+.info{
+    margin-right: 20%;
+    padding-left: 5%;
+    background-color:white;
+    border-radius: 10%;
+    border:3px solid rgb(2, 1, 102);
+    color: rgb(2, 1, 102);
+}
+
+.texto_info{
+    color: rgb(0, 113, 193);
+    margin-top: 5%;
+    margin-left: 0%;
+    margin-bottom: 10%;
+    border-color:rgb(2, 1, 102);
+    border-collapse: collapse;  
+}
+
+.boton{
+    margin-bottom: 3%;
+}
