@@ -2,7 +2,7 @@
 <html lang="es" dir="ltr">
   <head>
      <meta charset="utf-8">
-     <title>Access C</title>
+     <title>Access Control</title>
 
      <!--Links css de bootstrap-->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
@@ -16,7 +16,7 @@
       integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 
      <!--Conexion con estilos.css-->
-     <link type="text/css" href="css\estilos.css" rel="stylesheet" media="all" >
+     <link type="text/css" href="..\css\estilos.css" rel="stylesheet" media="all" >
 
   </head>
   <body>
@@ -25,7 +25,7 @@
         <div class="navbar-header">
           <a class="navbar-brand text-light"><br><h3> Access Control System </h3></a>
         </div>
-        <a href="../controller/Main.php?action=logout">
+        <a href="../controller/main.php?action=users">
           <button type="button" class="btn btn-outline-light btn-lg navbar-btn">Gestionar Usuarios</button>
         </a>
       </div>
@@ -50,15 +50,14 @@
             <h3>Cantidad actual de personas: 12</h3>
           </div>
           <div class="alert alert-primary">
-            Maximo actual permitido : Ninguno
-            <form action="" method="post" class="form form-control">
-              <input type="number" name="">
-              <input type="submit" value="Guardar" class="btn btn-primary">
+            <h5>Maximo actual permitido : Ninguno</h5>
+            <form action="" method="post" class="form-control text-center">
+              <input type="number" name="" class="form-control-lg" placeholder="Modificar máximo"/><br><br>
+              <button type="submit" name="boton" class="btn btn-primary btn-lg">Guardar</button>
             </form>
-          </div><br>
-          <div class="text-center alert alert-light text-success">
-            <h4>Estado actual del acceso: Activo</h4>
-            <p class="boton">
+          </div><br><br>
+          <div class="text-center text-success">
+            <h4>Estado actual del acceso: Activo</h4><br>
               <a href="../controller/Main.php?action=admin" class="boton">
                 <button type="button" class="btn btn-outline-danger">
                  <h3>Bloquear acceso</h3>
@@ -69,7 +68,6 @@
                   <h3>Acceso libre</h3>
                 </button>
               </a>
-            </p>
           </div>
         </div>
       </div>
