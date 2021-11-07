@@ -11,7 +11,8 @@ USE `sca` ;
 CREATE TABLE IF NOT EXISTS `sca`.`parqueadero` (
   `idparqueadero` INT NOT NULL AUTO_INCREMENT,
   `estado` INT NOT NULL,
-  `maximo_ingreso` INT NOT NULL,
+  `maximo` INT NOT NULL,
+  `actual` INT NOT NULL,
   PRIMARY KEY (`idparqueadero`))
 ENGINE = InnoDB;
 
@@ -20,15 +21,15 @@ ENGINE = InnoDB;
 -- Table `sca`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sca`.`usuario` (
-  `idusuario` INT NOT NULL,
+  `idusuario` VARCHAR(20) NOT NULL,
   `idrfid` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(10) NOT NULL,
+  `contrasena` VARCHAR(10) NOT NULL,
   `nombre_apellidos` VARCHAR(80) NOT NULL,
   `estado_actual` INT NOT NULL,
   `registrado` TIMESTAMP NOT NULL,
   `parqueadero_idparqueadero` INT NOT NULL,
   PRIMARY KEY (`idusuario`),
-  INDEX `fk_usuario_parqueadero_idx` (`parqueadero_idparqueadero` ASC) VISIBLE,
+  INDEX `fk_usuario_parqueadero_idx` (`parqueadero_idparqueadero` ASC) ,
   CONSTRAINT `fk_usuario_parqueadero`
     FOREIGN KEY (`parqueadero_idparqueadero`)
     REFERENCES `sca`.`parqueadero` (`idparqueadero`)

@@ -1,3 +1,3 @@
 <?php
-    header("location:view/index.php?action=start");
+    header('Location:controller/main.php') ;
 ?>

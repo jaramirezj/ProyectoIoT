@@ -47,27 +47,42 @@
         </div>
         <div class="col-sm-4">
           <div class="text-center text-secondary">
-            <h3>Cantidad actual de personas: 12</h3>
+            <h3>Cantidad actual de personas: <?php echo $data['actual']; ?></h3>
           </div>
           <div class="alert alert-primary">
-            <h5>Maximo actual permitido : Ninguno</h5>
-            <form action="" method="post" class="form-control text-center">
-              <input type="number" name="" class="form-control-lg" placeholder="Modificar máximo"/><br><br>
+            <h5>Maximo actual permitido : <?php echo $data['maximo']; ?></h5>
+            <form action="../controller/main.php?action=max" method="post" class="form-control text-center">
+              <input type="number" name="maximo" class="form-control-lg" placeholder="Modificar máximo"/><br><br>
               <button type="submit" name="boton" class="btn btn-primary btn-lg">Guardar</button>
             </form>
           </div><br><br>
           <div class="text-center text-success">
-            <h4>Estado actual del acceso: Activo</h4><br>
-              <a href="../controller/Main.php?action=admin" class="boton">
-                <button type="button" class="btn btn-outline-danger">
+            <h4>
+              Estado actual del acceso:
+              <?php if($data['estado']==1){echo "Activo";
+              }else if($data['estado']==2){
+                echo "Bloqueado";
+              }else if($data['estado']==3){echo "Acceso libre";}?> 
+            </h4><br>
+              
+              <?php if(!($data['estado']==1)){ ?>
+              <a href="../controller/main.php?action=state&s=1" class="boton">
+                <button type="button" class="btn btn-success">
+                 <h3>Activar</h3>
+                </button>
+              </a><?php } ?>
+              <?php if(!($data['estado']==2)){ ?>
+              <a href="../controller/main.php?action=state&s=2" class="boton">
+                <button type="button" class="btn btn-danger">
                  <h3>Bloquear acceso</h3>
                 </button>
-              </a>
-              <a href="../controller/Main.php?action=admin">
-                <button type="button" class="btn btn-outline-warning">
+              </a><?php } ?>
+              <?php if(!($data['estado']==3)){ ?>
+              <a href="../controller/main.php?action=state&s=3">
+                <button type="button" class="btn btn-warning">
                   <h3>Acceso libre</h3>
                 </button>
-              </a>
+              </a><?php } ?>
           </div>
         </div>
       </div>
