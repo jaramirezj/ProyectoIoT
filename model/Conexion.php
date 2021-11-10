@@ -65,5 +65,21 @@
              }else{return false;}
         }
 
+        public function verificarCredenciales($idTarjeta,$pass){
+            $consulta = "SELECT * FROM usuario WHERE idrfid = '$idTarjeta'";
+            $resultado = $this->conexion->query($consulta);
+            if($resultado){
+                while($row = $resultado->fetch_assoc()){ 
+                    if($row['contrasena']==$pass){
+                        return "correct";
+                    }else if($row['contrasena']!=$pass){
+                        return "wrong_pass";
+                    }
+                }
+            }
+            return "wrong_card";
+        }
+
     }
+
 ?>
