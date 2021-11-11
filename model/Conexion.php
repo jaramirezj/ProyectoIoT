@@ -65,13 +65,48 @@
              }else{return false;}
         }
 
+        public function verificarParqueadero(){
+            $consultaParqueo = "SELECT * FROM parqueadero WHERE idparqueadero = 1";
+            $resultado = $this->conexion->query($consultaParqueo);
+            if($resultado){
+                while($row = $resultado->fetch_assoc()){ 
+                    if($row['estado']==1 && ($row['actual'] < $row['maximo'])){
+                        return true;
+                    }else if($row['estado']==3){
+                        return true;
+                    }else if($row['estado']==2){return false;}
+                }
+            }
+        }
+
+        public function cambiarActual($cambio){
+            $actualizacion = "";
+            if($cambio == "+1"){
+                $actualizacion = "UPDATE parqueadero SET actual=(SELECT actual+1 FROM parqueadero WHERE idparqueadero = 1)
+                 WHERE idparqueadero = 1";
+            }else if($cambio == "-1"){
+                $actualizacion = "UPDATE parqueadero SET actual=(SELECT actual-1 FROM parqueadero WHERE idparqueadero = 1) 
+                WHERE idparqueadero = 1";
+            }
+            $resultadoInsercion = $this->conexion->query($actualizacion);
+            if($actualizacion){
+                return true;
+            }else{return false;}
+        }
+
         public function verificarCredenciales($idTarjeta,$pass){
             $consulta = "SELECT * FROM usuario WHERE idrfid = '$idTarjeta'";
             $resultado = $this->conexion->query($consulta);
             if($resultado){
                 while($row = $resultado->fetch_assoc()){ 
-                    if($row['contrasena']==$pass){
+                    $estado = $this->verificarParqueadero();
+                    if($row['contrasena']==$pass && $row['estado_actual']==0 && $estado){
+                        $this->cambiarActual("+1");
                         return "correct";
+                    }else if($row['estado_actual']==2){
+                        return "denied";
+                    }else if(!$estado){
+                        return "full";
                     }else if($row['contrasena']!=$pass){
                         return "wrong_pass";
                     }
@@ -79,6 +114,26 @@
             }
             return "wrong_card";
         }
+
+        public function verificarEstado(){
+            $consultaParqueo = "SELECT * FROM parqueadero WHERE idparqueadero = 1";
+            $resultado = $this->conexion->query($consultaParqueo);
+            if($resultado){
+                while($row = $resultado->fetch_assoc()){ 
+                    return $row['estado'];
+                }
+            }
+        }
+
+        public function cambiarEstado($estado,$idusuario){
+            $actualizacion = "UPDATE usuario SET estado_actual='$estado' WHERE idusuario = '$idusuario'";
+            $resultadoInsercion = $this->conexion->query($actualizacion);
+            if($actualizacion){
+                return true;
+            }else{return false;}
+        }
+
+
 
     }
 

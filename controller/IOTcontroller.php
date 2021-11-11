@@ -9,4 +9,13 @@
         header('Content-type: text/html');
         echo $resultado; 
     }
+    if(isset($_GET['salida'])){
+        $conexion = new Conexion();
+        $conexion->cambiarActual("-1");
+    }
+    if(isset($_GET['estado'])){
+        $conexion = new Conexion();
+        header('Content-type: text/html');
+        echo $conexion->verificarEstado(); 
+    }
 ?>

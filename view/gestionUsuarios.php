@@ -61,12 +61,21 @@
                            <td><?php echo $usuarios['idrfid'];  ?> </td>
                            <td><?php echo $usuarios['nombre_apellidos'];?> </td>
                            <td><?php if($usuarios['estado_actual']==0){
-                               echo "Fuera del parqueadero";
-                                     }else{
-                                         echo "En el parqueadero";
+                               echo "Activo";
+                                     //}else if($usuarios['estado_actual']==1){
+                                       ///  echo "En el parqueadero";
+                                     }else if($usuarios['estado_actual']==2){
+                                         echo "Bloqueado";
                                      } ?> </td>
                            <td><?php echo  $usuarios['registrado']; ?> </td>
                            <td>
+                           <?php if($usuarios['estado_actual']==0){ ?>
+                                <a href="../controller/main.php?user=block&id=<?php echo $usuarios['idusuario']; ?>" class="btn btn-outline-danger">
+                                  Bloquear acceso
+                                </a><?php } else{?>
+                                <a href="../controller/main.php?user=unlock&id=<?php echo $usuarios['idusuario']; ?>" class="btn btn-outline-success">
+                                 Desbloquear acceso
+                                </a><?php } ?>
                                <a href="../controller/main.php?user=delete&id=<?php echo $usuarios['idusuario']; ?>" class="btn btn-danger">
                                      Eliminar
                                 </a>

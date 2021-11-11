@@ -38,6 +38,18 @@
                         require dirname( __DIR__ ) . '/view/gestionUsuarios.php';
                     }
                     break;
+                case 'block':
+                    if($conexion->cambiarEstado(2,$_GET['id'])){
+                        $data = $conexion->getUsers();
+                        require dirname( __DIR__ ) . '/view/gestionUsuarios.php';
+                    }
+                    break;
+                case 'unlock':
+                    if($conexion->cambiarEstado(0,$_GET['id'])){
+                        $data = $conexion->getUsers();
+                        require dirname( __DIR__ ) . '/view/gestionUsuarios.php';
+                    }
+                    break;
             }
         }else{
             $data = $conexion->getAccessData();
